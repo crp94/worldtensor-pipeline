@@ -1,0 +1,23 @@
+# Global Market Accessibility (Travel Time to Cities)
+#
+# Source  : Weiss et al. (2018), Nature.
+# DOI     : https://doi.org/10.1038/nature25181
+# Metrics : Travel time to the nearest city (minutes)
+# Resolution: 1km (Aggregated to 0.25°)
+
+short_name: ACCESSIBILITY
+version: "1.0"
+temporal_range: [2015, 2015] # Static 2015 map
+
+variables:
+  travel_time_to_cities:
+    long_name: "Travel time to the nearest city"
+    units: "minutes"
+    category: "human_systems"
+    aggregation: "mean"
+    scale_factor: 1.0
+    fill_value: -9999
+
+output:
+  final_dir: "data/final/static/travel_time_to_cities"
+  plots_dir: "plots/accessibility"

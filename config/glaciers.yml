@@ -1,0 +1,29 @@
+# WGMS annual glacier mass-change estimates (AMCE)
+# Source: https://wgms.ch/products/annual-mass-change-estimates/
+#
+# Native data: 0.5° annual global grids (1976-2025 in current release)
+# Output: yearly 0.25° global files
+
+dataset: wgms_amce
+source_url: "https://wgms.ch/downloads/wgms-amce-2026-02-10.zip"
+archive_filename: "wgms-amce-2026-02-10.zip"
+netcdf_filename: "global_grid.nc4"
+temporal_range: [1976, 2025]
+domain: "cryosphere"
+
+variables:
+  glacier_mass_change_mwe:
+    source_var: "mwe"
+    long_name: "Annual glacier mass change"
+    units: "m w.e."
+    cmap: "RdBu_r"
+  glacier_mass_change_gt:
+    source_var: "gt"
+    long_name: "Annual glacier mass change"
+    units: "Gt"
+    cmap: "RdBu_r"
+  glacier_area_km2:
+    source_var: "area_km2"
+    long_name: "Glacierized area"
+    units: "km2"
+    cmap: "Blues"

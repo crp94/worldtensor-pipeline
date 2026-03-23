@@ -1,0 +1,29 @@
+# CDS Derived Drought Historical Monthly
+# Dataset page: https://cds.climate.copernicus.eu/datasets/derived-drought-historical-monthly?tab=overview
+#
+# Notes
+# - Monthly drought indicators are downloaded from CDS and aggregated to yearly
+#   mean maps on the project 0.25° grid.
+# - Each variable is processed across configured accumulation periods.
+
+dataset: derived-drought-historical-monthly
+dataset_type: consolidated_dataset
+product_type: reanalysis
+version: "1_0"
+temporal_range: [1940, 2025]
+accumulation_periods: [1, 3, 6, 12]
+
+variables:
+  spi:
+    cds_name: standardised_precipitation_index
+    long_name: Standardized Precipitation Index
+    units: "1"
+    aggregation: mean
+    category: drought
+
+  spei:
+    cds_name: standardised_precipitation_evapotranspiration_index
+    long_name: Standardized Precipitation Evapotranspiration Index
+    units: "1"
+    aggregation: mean
+    category: drought

@@ -1,0 +1,35 @@
+# ESA CCI Permafrost v05.0 (northern hemisphere yearly products)
+# Source: https://climate.esa.int/en/projects/permafrost/
+#
+# Native data: 0.01° annual grids over 25N-85N
+# Output: yearly 0.25° global files
+
+dataset: esa_cci_permafrost_v05
+temporal_range: [1997, 2023]
+domain: "cryosphere"
+
+datasets:
+  permafrost_extent_fraction:
+    base_url: "https://dap.ceda.ac.uk/neodc/esacci/permafrost/data/permafrost_extent/L4/area4/pp/v05.0/northern_hemisphere"
+    filename_template: "ESACCI-PERMAFROST-L4-PFR-MODISLST_CRYOGRID-AREA4_PP-{year}-fv05.0.nc"
+    source_var: "PFR"
+    long_name: "Permafrost extent fraction"
+    units: "%"
+    clip_min: 0
+    clip_max: 100
+    src_nodata: 255
+    downscale_method: "average"
+    cmap: "YlGnBu"
+
+  permafrost_active_layer_thickness:
+    base_url: "https://dap.ceda.ac.uk/neodc/esacci/permafrost/data/active_layer_thickness/L4/area4/pp/v05.0/northern_hemisphere"
+    filename_template: "ESACCI-PERMAFROST-L4-ALT-MODISLST_CRYOGRID-AREA4_PP-{year}-fv05.0.nc"
+    source_var: "ALT"
+    scale_factor: 0.01
+    long_name: "Permafrost active layer thickness"
+    units: "m"
+    clip_min: 0
+    clip_max: 10
+    src_nodata: 65535
+    downscale_method: "average"
+    cmap: "cividis"

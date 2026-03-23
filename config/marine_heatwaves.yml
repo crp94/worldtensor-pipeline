@@ -1,0 +1,24 @@
+# NOAA PSL marine heatwave diagnostics based on OISST monthly anomalies
+# Source: https://downloads.psl.noaa.gov/Datasets/marinehw/
+#
+# Native data: 1° monthly global anomaly fields (1991-present)
+# Output: yearly 0.25° global files
+
+dataset: noaa_psl_marine_heatwaves_monthly
+source_base_url: "https://downloads.psl.noaa.gov/Datasets/marinehw"
+files:
+  anomaly: "oisst.mon.anom_latest.nc"
+  threshold_p90: "oisst.mon.quantile90_latest.nc"
+temporal_range: [1991, 2025]
+require_full_year: true
+domain: "extremes"
+
+variables:
+  heatwave_marine_months:
+    long_name: "Months with SST anomaly above monthly 90th percentile threshold"
+    units: "months/year"
+    cmap: "YlOrRd"
+  heatwave_marine_mean_excess:
+    long_name: "Mean SST anomaly excess above monthly 90th percentile threshold"
+    units: "degC"
+    cmap: "inferno"

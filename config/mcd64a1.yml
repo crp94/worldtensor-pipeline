@@ -1,0 +1,41 @@
+# MCD64A1 — MODIS/Terra+Aqua Burned Area Monthly L3 Global 500m SIN Grid
+#
+# Product page: https://modis.gsfc.nasa.gov/data/dataprod/mod64.php
+# LP DAAC catalog: MCD64A1 (Collection 6.1)
+#
+# Notes
+# - 500m monthly tiled product in Sinusoidal projection
+# - Replaces the retired MCD45A1 product
+# - Burned pixels are indicated by the day of burn (1-366)
+
+short_name: MCD64A1
+version: "061"
+temporal_range: [2002, 2025]
+raw_extension: hdf
+
+variables:
+  burned_area:
+    long_name: Burned Area (aggregated from 500m)
+    units: "km2"
+    sds_include: ["Burn Date"]
+    sds_exclude: ["Uncertainty", "QA", "First", "Last"]
+    scale_factor: 1.0
+    fill_value: 0
+    valid_range_raw: [1, 366]
+    category: fire
+
+
+qa:
+  # MCD64 quality SDS
+  sds_include: ["QA"]
+  sds_exclude: []
+  default_mode: moderate
+  modes:
+    strict: "Keep only high confidence pixels."
+    moderate: "Keep all valid QA pixels."
+    none: "Do not mask by QA bits."
+
+output:
+  final_dir: data/final/vegetation
+  plots_dir: plots/mcd64a1
+  stats: [sum]

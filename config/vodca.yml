@@ -1,0 +1,24 @@
+# VODCA v2 L-band Vegetation Optical Depth (2010–2021)
+#
+# Source  : https://doi.org/10.48436/t74ty-tcx62
+# Citation: Moesinger et al. (2020/2024).
+# Resolution: 0.25° (Native)
+
+short_name: VODCA_L
+version: "2.0"
+temporal_range: [2010, 2021]
+resolution_native: "0.25°"
+
+variables:
+  vod:
+    long_name: "Vegetation Optical Depth (L-band)"
+    units: "1"
+    category: "vegetation"
+    aggregation: "mean"
+    scale_factor: 1.0
+    fill_value: -9999
+
+output:
+  final_dir: "data/final/vegetation/vod"
+  plots_dir: "plots/vodca"
+  stats: ["mean"]

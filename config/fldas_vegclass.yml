@@ -1,0 +1,99 @@
+# FLDAS Dominant Vegetation Type — IGBP-modified MODIS classification
+#
+# Source: https://ldas.gsfc.nasa.gov/fldas/vegetation-class
+# File:   FLDAS-global_domveg.nc4 (0.1°, 1500×3600)
+# Reference: McNally et al. (2017), Scientific Data.
+#
+# IGBP-modified MODIS 20-class land cover used by the Noah LSM in FLDAS.
+# One-hot encoding of 18 vegetation/land surface classes (excluding Water=17
+# and absent Wetlands=11).
+
+source_url: "https://ldas.gsfc.nasa.gov/sites/default/files/users/user416/FLDAS-global_domveg.nc4"
+source_file: "FLDAS-global_domveg.nc4"
+source_variable: "FLDAS_domveg"
+
+# Classes to exclude from one-hot encoding
+exclude_classes: [17]  # 17 = Water bodies
+
+variables:
+  # ── Forests ────────────────────────────────────────────────────────────
+  vegclass_enf:
+    class_id: 1
+    long_name: "Evergreen needleleaf forest"
+    units: "1"
+  vegclass_ebf:
+    class_id: 2
+    long_name: "Evergreen broadleaf forest"
+    units: "1"
+  vegclass_dnf:
+    class_id: 3
+    long_name: "Deciduous needleleaf forest"
+    units: "1"
+  vegclass_dbf:
+    class_id: 4
+    long_name: "Deciduous broadleaf forest"
+    units: "1"
+  vegclass_mixed_forest:
+    class_id: 5
+    long_name: "Mixed forests"
+    units: "1"
+
+  # ── Shrublands & Savannas ──────────────────────────────────────────────
+  vegclass_closed_shrub:
+    class_id: 6
+    long_name: "Closed shrublands"
+    units: "1"
+  vegclass_open_shrub:
+    class_id: 7
+    long_name: "Open shrublands"
+    units: "1"
+  vegclass_woody_savanna:
+    class_id: 8
+    long_name: "Woody savannas"
+    units: "1"
+  vegclass_savanna:
+    class_id: 9
+    long_name: "Savannas"
+    units: "1"
+
+  # ── Grasslands & Croplands ─────────────────────────────────────────────
+  vegclass_grassland:
+    class_id: 10
+    long_name: "Grasslands"
+    units: "1"
+  vegclass_cropland:
+    class_id: 12
+    long_name: "Croplands"
+    units: "1"
+  vegclass_crop_natural:
+    class_id: 14
+    long_name: "Cropland/natural vegetation mosaic"
+    units: "1"
+
+  # ── Built-up & Barren ──────────────────────────────────────────────────
+  vegclass_urban:
+    class_id: 13
+    long_name: "Urban and built-up"
+    units: "1"
+  vegclass_barren:
+    class_id: 16
+    long_name: "Barren or sparsely vegetated"
+    units: "1"
+
+  # ── Snow, Ice & Tundra ─────────────────────────────────────────────────
+  vegclass_snow_ice:
+    class_id: 15
+    long_name: "Snow and ice"
+    units: "1"
+  vegclass_wooded_tundra:
+    class_id: 18
+    long_name: "Wooded tundra"
+    units: "1"
+  vegclass_mixed_tundra:
+    class_id: 19
+    long_name: "Mixed tundra"
+    units: "1"
+  vegclass_barren_tundra:
+    class_id: 20
+    long_name: "Barren tundra"
+    units: "1"

@@ -1,0 +1,82 @@
+# Candidate socioeconomic datasets for evaluation in WorldTensor.
+# These are not yet part of the main variable registry.
+
+datasets:
+  gdp_per_capita:
+    enabled: true
+    domain: "human_systems"
+    var_name: "gdp_per_capita"
+    long_name: "Gross Domestic Product per capita"
+    units: "USD per capita (PPP, constant 2021)"
+    source_url: "https://zenodo.org/records/16741980/files/rast_adm2_gdp_perCapita_1990_2022_30arcmin.tif"
+    filename: "rast_adm2_gdp_perCapita_1990_2022_30arcmin.tif"
+    format: "multiband_geotiff"
+    year_pattern: "(19|20)\\d{2}"
+    nodata_value: 4294967295
+    cmap: "inferno"
+    log_scale: true
+
+  gni_per_capita:
+    enabled: true
+    domain: "human_systems"
+    var_name: "gni_per_capita"
+    long_name: "Gross National Income per capita"
+    units: "USD per capita"
+    source_url: "https://zenodo.org/records/16410778/files/rast_adm1_gni_perCapita_1990_2023.tif"
+    filename: "rast_adm1_gni_perCapita_1990_2023.tif"
+    format: "multiband_geotiff"
+    year_pattern: "(19|20)\\d{2}"
+    cmap: "magma"
+    log_scale: true
+
+  gini:
+    enabled: true
+    domain: "human_systems"
+    var_name: "gini_disp"
+    long_name: "Income Gini coefficient (disposable income)"
+    units: "1"
+    source_url: "https://zenodo.org/records/16410778/files/rast_adm1_gini_WID_1990_2023.tif"
+    filename: "rast_adm1_gini_WID_1990_2023.tif"
+    format: "multiband_geotiff"
+    year_pattern: "(19|20)\\d{2}"
+    clip_min: 0.0
+    clip_max: 1.0
+    cmap: "plasma"
+    log_scale: false
+
+  hdi:
+    enabled: true
+    domain: "human_systems"
+    var_name: "hdi"
+    long_name: "Human Development Index"
+    units: "1"
+    source_url: "https://zenodo.org/records/4972425/files/HDI_1990_2015_v2.nc"
+    filename: "HDI_1990_2015_v2.nc"
+    format: "netcdf_timecube"
+    source_var: "HDI"
+    lat_name: "latitude"
+    lon_name: "longitude"
+    time_name: "time"
+    clip_min: 0.0
+    clip_max: 1.0
+    cmap: "viridis"
+    log_scale: false
+
+  gdp_total_wangsun025:
+    enabled: true
+    domain: "human_systems"
+    var_name: "gdp_total"
+    long_name: "Gross Domestic Product (historical)"
+    units: "Million 2005 USD"
+    source_url: "https://zenodo.org/records/7898409/files/GDP_025d%20%282000-2100%29.7z"
+    filename: "GDP_025d_2000_2100.7z"
+    format: "archive_yearly_tiffs"
+    archive_glob: "025d/GDP*.tif"
+    year_pattern: "(19|20)\\d{2}"
+    historical_start_year: 2000
+    historical_end_year: 2020
+    exclude_regex: "_ssp"
+    regrid_method: "nearest"
+    skip_map_plot: true
+    cmap: "cividis"
+    log_scale: true

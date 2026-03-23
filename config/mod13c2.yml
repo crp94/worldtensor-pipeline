@@ -1,0 +1,50 @@
+# MOD13C2 v6.1 — MODIS/Terra Vegetation Indices Monthly L3 CMG (0.05°)
+#
+# Product page: https://modis.gsfc.nasa.gov/data/dataprod/mod13.php
+# LP DAAC catalog: MOD13C2 (Collection 6.1)
+#
+# Notes
+# - Monthly global CMG at 0.05° (~5600 m at equator).
+# - Input VI values are scaled integers with factor 10000.
+# - QA filtering is applied before yearly aggregation.
+
+short_name: MOD13C2
+version: "061"
+temporal_range: [2000, 2025]
+raw_extension: hdf
+
+variables:
+  ndvi:
+    long_name: Normalized Difference Vegetation Index
+    units: "1"
+    sds_include: ["monthly", "ndvi"]
+    sds_exclude: ["std", "quality"]
+    scale_factor: 10000.0
+    fill_value: -3000
+    valid_range_raw: [-2000, 10000]
+    category: vegetation
+
+  evi:
+    long_name: Enhanced Vegetation Index
+    units: "1"
+    sds_include: ["monthly", "evi"]
+    sds_exclude: ["std", "quality"]
+    scale_factor: 10000.0
+    fill_value: -3000
+    valid_range_raw: [-2000, 10000]
+    category: vegetation
+
+qa:
+  # MOD13 quality SDS used to mask NDVI/EVI pixels
+  sds_include: ["monthly", "vi quality"]
+  sds_exclude: []
+  default_mode: moderate
+  modes:
+    strict: "Keep only QA bits 00 (good quality)."
+    moderate: "Keep QA bits 00 or 01 (good + check-other-QA)."
+    none: "Do not mask by QA bits."
+
+output:
+  final_dir: data/final/vegetation
+  plots_dir: plots/mod13c2
+  stats: [mean, std, max, min]

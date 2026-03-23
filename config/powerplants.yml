@@ -1,0 +1,42 @@
+# Global Integrated Power Tracker (GEM) yearly gridding config
+#
+# Input:
+#   data/raw/Global-Integrated-Power-March-2026.xlsx
+#   Sheet: Power facilities
+#
+# Outputs:
+#   data/final/energy/power_<metric>_capacity_mw_<type_or_total>/{YYYY}.nc
+#
+# Metrics:
+# - active:   installed capacity stock active in year Y
+# - added:    capacity commissioned in year Y
+# - retired:  capacity retired in year Y
+# - net:      added - retired in year Y
+
+source_file: "Global-Integrated-Power-March-2026.xlsx"
+sheet_name: "Power facilities"
+source_name: "Global Integrated Power Tracker (GEM), March 2026"
+
+output:
+  final_dir: "data/final/energy"
+  plots_dir: "plots/powerplants"
+  units: "MW per cell"
+  plot_every: 10
+
+filters:
+  min_capacity_mw: 0.0
+  land_mask_path: "data/final/static/geography/dist_to_coast.nc"
+  # Rows with status containing any of these substrings are excluded.
+  excluded_status_substrings:
+    - "cancelled"
+    - "shelved"
+
+columns:
+  type: "Type"
+  status: "Status"
+  capacity_mw: "Capacity (MW)"
+  start_year: "Start year"
+  retired_year: "Retired year"
+  latitude: "Latitude"
+  longitude: "Longitude"
+  location_accuracy: "Location accuracy"

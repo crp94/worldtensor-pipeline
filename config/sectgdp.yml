@@ -1,0 +1,21 @@
+# SectGDP30 — Global sectoral GDP map at 30'' resolution
+# Reference: Gao et al. (2024)
+# URL: https://zenodo.org/records/15774017
+
+source_url: https://zenodo.org/records/15774017/files/SectGDP30_v2.tar.gz
+anchor_years: [2010, 2015, 2020]
+temporal_range: [2010, 2020]
+
+variables:
+  gdp_agriculture:
+    long_name: "Gross Domestic Product: Agriculture"
+    units: "million USD"
+    filename_pattern: "AgricultureGDP_{year}.tif"
+  gdp_industry:
+    long_name: "Gross Domestic Product: Industry"
+    units: "million USD"
+    filename_pattern: "IndustryGDP_{year}.tif"
+  gdp_services:
+    long_name: "Gross Domestic Product: Services"
+    units: "million USD"
+    filename_pattern: "ServiceGDP_{year}.tif"

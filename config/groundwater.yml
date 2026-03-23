@@ -1,0 +1,34 @@
+# NASA GLDAS-2.1 Groundwater and Soil Moisture Storage
+#
+# Source  : Global Land Data Assimilation System (GLDAS) v2.1
+# Short Name: GLDAS_NOAH025_M
+# Resolution: 0.25° (Native)
+
+short_name: GLDAS_GW
+version: "2.1"
+temporal_range: [2000, 2025]
+resolution_native: "0.25°"
+
+variables:
+  # Root zone soil moisture (0-100cm)
+  root_zone_sm:
+    long_name: "Root zone soil moisture"
+    units: "kg m-2"
+    category: "hydrology"
+    aggregation: "mean"
+    scale_factor: 1.0
+    fill_value: -9999
+
+  # Groundwater storagecomponent
+  groundwater_storage:
+    long_name: "Groundwater storage"
+    units: "kg m-2"
+    category: "hydrology"
+    aggregation: "mean"
+    scale_factor: 1.0
+    fill_value: -9999
+
+output:
+  final_dir: "data/final/hydrology"
+  plots_dir: "plots/groundwater"
+  stats: ["mean"]

@@ -1,0 +1,35 @@
+# GMTED2010 — Global Multi-resolution Terrain Elevation Data 2010 (USGS)
+#
+# Data source: https://www.usgs.gov/coastal-changes-and-impacts/gmted2010
+# Download   : https://topotools.cr.usgs.gov/gmted_viewer/gmted2010_global_grids.php
+# Citation   : Danielson & Gesch (2011), USGS Open-File Report 2011-1073
+# License    : Public domain (USGS)
+#
+# 30 arc-second (~1 km) global elevation grids derived from multiple sources
+# (SRTM, Canadian DEM, SPOT5 HRS, etc.). Coverage: 84°N to 90°S.
+# Format: ESRI ArcGrid (GDAL-readable). CRS: WGS84 geographic.
+#
+# Slope is derived from the mean elevation grid using `gdaldem slope`.
+
+base_url: https://edcintl.cr.usgs.gov/downloads/sciweb1/shared/topo/downloads/GMTED/Grid_ZipFiles
+
+variables:
+  elevation_mean:
+    grid_file: "mn30_grd"
+    zip_name: "mn30_grd.zip"
+    units: "m"
+    long_name: "Mean elevation"
+    cmap: "terrain"
+
+  elevation_stddev:
+    grid_file: "sd30_grd"
+    zip_name: "sd30_grd.zip"
+    units: "m"
+    long_name: "Elevation standard deviation (terrain roughness)"
+    cmap: "YlOrBr"
+
+  slope_mean:
+    derived_from: "elevation_mean"
+    units: "degrees"
+    long_name: "Mean terrain slope"
+    cmap: "YlOrBr"

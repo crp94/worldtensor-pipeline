@@ -1,0 +1,83 @@
+# CAMS Global Reanalysis (EAC4) Monthly Means — Variable Registry
+#
+# Source: cams-global-reanalysis-eac4-monthly
+# Docs: https://ads.atmosphere.copernicus.eu/datasets/cams-global-reanalysis-eac4-monthly
+#
+# Each variable has:
+#   ads_name:    Name used in ADS API requests
+#   long_name:   Human-readable description
+#   units:       CF-compliant unit string
+#   aggregation: Primary yearly aggregation method (mean | sum | max | min)
+#   category:    Thematic grouping
+
+dataset: cams-global-reanalysis-eac4-monthly
+product_type: monthly_mean
+temporal_range: [2003, 2024]
+
+variables:
+
+  # ── Reactive Gases ────────────────────────────────────────────────────────
+  no2:
+    ads_name: nitrogen_dioxide
+    long_name: Nitrogen dioxide
+    units: kg m-3
+    aggregation: mean
+    category: atmospheric_composition
+  co:
+    ads_name: carbon_monoxide
+    long_name: Carbon monoxide
+    units: kg m-3
+    aggregation: mean
+    category: atmospheric_composition
+  so2:
+    ads_name: sulphur_dioxide
+    long_name: Sulphur dioxide
+    units: kg m-3
+    aggregation: mean
+    category: atmospheric_composition
+  o3:
+    ads_name: ozone
+    long_name: Ozone
+    units: kg m-3
+    aggregation: mean
+    category: atmospheric_composition
+  hcho:
+    ads_name: formaldehyde
+    long_name: Formaldehyde
+    units: kg m-3
+    aggregation: mean
+    category: atmospheric_composition
+
+  # ── Aerosols & PM ──────────────────────────────────────────────────────────
+  pm2p5:
+    ads_name: particulate_matter_2.5um
+    long_name: Particulate matter 2.5um
+    units: kg m-3
+    aggregation: mean
+    category: aerosols
+  pm10:
+    ads_name: particulate_matter_10um
+    long_name: Particulate matter 10um
+    units: kg m-3
+    aggregation: mean
+    category: aerosols
+  aod550:
+    ads_name: total_aerosol_optical_depth_550nm
+    long_name: Total aerosol optical depth at 550nm
+    units: "1"
+    aggregation: mean
+    category: aerosols
+
+  # ── Total Column (often easier to interpret) ─────────────────────────────
+  tcno2:
+    ads_name: total_column_nitrogen_dioxide
+    long_name: Total column nitrogen dioxide
+    units: kg m-2
+    aggregation: mean
+    category: atmospheric_composition
+  tco3:
+    ads_name: total_column_ozone
+    long_name: Total column ozone
+    units: kg m-2
+    aggregation: mean
+    category: atmospheric_composition

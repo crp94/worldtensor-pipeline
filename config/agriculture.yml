@@ -1,0 +1,32 @@
+# GGCP10 — Global Gridded Crop Production (2010–2020)
+#
+# Source: Harvard Dataverse (DOI: 10.7910/DVN/G1HBNK)
+# Reference: He et al. (2024), Scientific Data.
+#
+# Yearly gridded production (tonnes) for Maize, Wheat, Rice, and Soybean.
+# Resolution: 10 km (~0.083 degrees)
+# Target: 0.25 degrees
+
+source_url: "https://dataverse.harvard.edu/api/access/dataset/:persistentId/?persistentId=doi:10.7910/DVN/G1HBNK"
+
+variables:
+  prod_maize:
+    crop_name: "Maize"
+    long_name: "Maize production"
+    units: "tonnes per cell"
+    cmap: "YlOrBr"
+  prod_wheat:
+    crop_name: "Wheat"
+    long_name: "Wheat production"
+    units: "tonnes per cell"
+    cmap: "YlOrBr"
+  prod_rice:
+    crop_name: "Rice"
+    long_name: "Rice production"
+    units: "tonnes per cell"
+    cmap: "YlOrBr"
+  prod_soybean:
+    crop_name: "Soybean"
+    long_name: "Soybean production"
+    units: "tonnes per cell"
+    cmap: "YlOrBr"

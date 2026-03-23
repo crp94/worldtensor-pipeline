@@ -1,0 +1,63 @@
+# GLDAS/Noah Soil Texture — FAO 16-category classification
+#
+# Source: https://ldas.gsfc.nasa.gov/gldas/soils
+# File:   GLDASp4_soiltexture_025d.nc4
+# Hybrid of 30-second STATSGO (CONUS) and 5-minute FAO (elsewhere)
+# Resolution: 0.25°, single static layer
+#
+# One-hot encoding of 12 soil texture types (excluding Bedrock=15, Other=16,
+# and absent classes 5=Silt, 14=unused).
+
+source_url: "https://ldas.gsfc.nasa.gov/sites/default/files/ldas/gldas/SOILS/GLDASp4_soiltexture_025d.nc4"
+source_file: "GLDASp4_soiltexture_025d.nc4"
+source_variable: "GLDAS_soiltex"
+
+variables:
+  soiltex_sand:
+    class_id: 1
+    long_name: "Sand"
+    units: "1"
+  soiltex_loamy_sand:
+    class_id: 2
+    long_name: "Loamy sand"
+    units: "1"
+  soiltex_sandy_loam:
+    class_id: 3
+    long_name: "Sandy loam"
+    units: "1"
+  soiltex_silt_loam:
+    class_id: 4
+    long_name: "Silt loam"
+    units: "1"
+  soiltex_loam:
+    class_id: 6
+    long_name: "Loam"
+    units: "1"
+  soiltex_sandy_clay_loam:
+    class_id: 7
+    long_name: "Sandy clay loam"
+    units: "1"
+  soiltex_silty_clay_loam:
+    class_id: 8
+    long_name: "Silty clay loam"
+    units: "1"
+  soiltex_clay_loam:
+    class_id: 9
+    long_name: "Clay loam"
+    units: "1"
+  soiltex_sandy_clay:
+    class_id: 10
+    long_name: "Sandy clay"
+    units: "1"
+  soiltex_silty_clay:
+    class_id: 11
+    long_name: "Silty clay"
+    units: "1"
+  soiltex_clay:
+    class_id: 12
+    long_name: "Clay"
+    units: "1"
+  soiltex_organic:
+    class_id: 13
+    long_name: "Organic materials"
+    units: "1"

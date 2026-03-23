@@ -1,0 +1,27 @@
+# Distance to Nearest Coastline — NASA GSFC Ocean Biology Processing Group
+#
+# Source: NASA GSFC OBPG, via NOAA ERDDAP
+# ERDDAP: https://upwell.pfeg.noaa.gov/erddap/griddap/dist2coast_1deg.html
+# Docs:   https://oceancolor.gsfc.nasa.gov/resources/docs/distfromcoast/
+# Citation: NASA Ocean Biology Processing Group (OBPG), 2012.
+#
+# The original dataset is a 0.01° global grid generated using GMT's
+# intermediate-resolution coastline. Distances are computed in km.
+# Sign convention:
+#   positive = over ocean (distance to nearest land)
+#   negative = over land  (distance to nearest coast)
+# Landlocked water bodies (e.g. Caspian Sea) are treated as land.
+#
+# We download at 0.25° via ERDDAP server-side stride (stride=25 on 0.01°).
+# This avoids downloading the full 2.6 GB file.
+
+# ERDDAP URL with stride=25 to get 0.25° resolution directly
+source_url: "https://upwell.pfeg.noaa.gov/erddap/griddap/dist2coast_1deg.nc?dist%5B(-89.99):25:(90.0)%5D%5B(-180.0):25:(179.99)%5D"
+source_file: "dist2coast_025d.nc"
+source_variable: "dist"
+
+variables:
+  dist_to_coast:
+    long_name: "Distance to nearest coastline"
+    units: "km"
+    sign_convention: "positive = ocean, negative = land"

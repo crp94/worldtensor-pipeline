@@ -1,0 +1,51 @@
+# Global Crop-Specific Fertilization Dataset (1961–2019)
+#
+# Data source
+# -----------
+# Decorte, T., Janssens, I., Coello Sanz, F., & Mortier, S. (2024).
+# Fertilizer application rate maps per crop and year.
+# Figshare. Dataset. https://doi.org/10.6084/m9.figshare.25435432.v3
+#
+# Companion paper:
+# Coello Sanz, F. et al. (2024). Global Crop-Specific Fertilization Dataset
+# from 1961–2019. Nature Scientific Data.
+# https://doi.org/10.1038/s41597-024-04215-x
+#
+# License        : CC0 (Public Domain)
+# Native res.    : 5-arcminute (~10 km)
+# Temporal range : 1961–2019
+# Regridded to   : 0.25° (bilinear interpolation)
+#
+# Processing: for each nutrient, the 13 per-crop rasters are summed to produce
+# a single total application-rate layer per year, then regridded to 0.25°.
+
+short_name: FERTILIZER
+version: "3"
+source_doi: "10.6084/m9.figshare.25435432.v3"
+paper_doi: "10.1038/s41597-024-04215-x"
+license: "CC0"
+temporal_range: [1961, 2019]
+resolution_native: "5-arcminute"
+
+variables:
+  fertilizer_nitrogen:
+    long_name: "Total nitrogen fertilizer application rate"
+    units: "kg ha-1 yr-1"
+    category: "Agriculture"
+    aggregation: "sum"
+
+  fertilizer_phosphorus:
+    long_name: "Total phosphorus (P2O5) fertilizer application rate"
+    units: "kg ha-1 yr-1"
+    category: "Agriculture"
+    aggregation: "sum"
+
+  fertilizer_potassium:
+    long_name: "Total potassium (K2O) fertilizer application rate"
+    units: "kg ha-1 yr-1"
+    category: "Agriculture"
+    aggregation: "sum"
+
+output:
+  final_dir: "data/final/agriculture"
+  plots_dir: "plots/fertilizer"

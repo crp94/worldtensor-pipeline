@@ -1,0 +1,26 @@
+# MODIS-Aqua Chlorophyll-a (CHL) — Variable Registry
+#
+# Source: NASA Ocean Biology Processing Group (OBPG)
+# Product: MODIS-Aqua L3m Monthly 4km Chlorophyll-a (OCI)
+# URL: https://oceandata.sci.gsfc.nasa.gov/
+#
+# Each variable has:
+#   short_name:  Internal code
+#   long_name:   Human-readable description
+#   units:       CF-compliant unit string
+#   aggregation: Primary yearly aggregation method (mean | std | max | min)
+#   category:    oceanography
+
+dataset: MODISA_L3m_CHL
+product: CHL
+resolution_native: "4km"
+temporal_range: [2002, 2024]
+
+variables:
+  chl:
+    long_name: "Chlorophyll-a concentration"
+    units: "mg m-3"
+    aggregation: mean
+    category: oceanography
+    cmap: "YlGn"
+    log_scale: true

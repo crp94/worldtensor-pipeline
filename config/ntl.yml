@@ -1,0 +1,14 @@
+# NTL — Harmonized DMSP and VIIRS nighttime light data (1992-2018)
+# Reference: Li et al. (2020), Nature Scientific Data
+# DOI: 10.6084/m9.figshare.9828827.v2
+
+figshare_id: 9828827
+temporal_range: [1992, 2018]
+
+variables:
+  ntl_harmonized:
+    long_name: "Harmonized Nighttime Light (DN)"
+    units: "1"
+    # Files 1992-2013 are calDMSP, 2014-2018 are simVIIRS
+    filename_pattern_dmsp: "Harmonized_DN_NTL_{year}_calDMSP.tif"
+    filename_pattern_viirs: "Harmonized_DN_NTL_{year}_simVIIRS.tif"

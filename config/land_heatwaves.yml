@@ -1,0 +1,38 @@
+# Precomputed annual land heatwave indices from HadEX3 (Met Office Hadley Centre)
+# Product page: https://www.metoffice.gov.uk/hadobs/hadex3/
+# Direct files are annual gridded ET-SCI indices on a 1.25° x 1.875° land grid.
+#
+# Time resolution: yearly
+# Native temporal range for these files: 1901-2018
+# Regridded output: 0.25° global grid
+
+dataset: hadex3_land_heatwaves
+source_base_url: "https://www.metoffice.gov.uk/hadobs/hadex3/data_etsci"
+temporal_range: [1901, 2018]
+interpolate_missing_years: true
+
+variables:
+  heatwave_land_frequency:
+    source_filename: "HadEX3_61-90_EHF_HWF_ANN.nc.gz"
+    source_var: "EHF_HWF"
+    long_name: "Annual heatwave frequency (EHF)"
+    units: "days/year"
+    cmap: "YlOrRd"
+  heatwave_land_number:
+    source_filename: "HadEX3_61-90_EHF_HWN_ANN.nc.gz"
+    source_var: "EHF_HWN"
+    long_name: "Annual heatwave number (EHF)"
+    units: "count"
+    cmap: "Oranges"
+  heatwave_land_amplitude:
+    source_filename: "HadEX3_61-90_EHF_HWA_ANN.nc.gz"
+    source_var: "EHF_HWA"
+    long_name: "Annual heatwave amplitude (EHF)"
+    units: "degrees_C^2"
+    cmap: "YlOrBr"
+  heatwave_land_magnitude:
+    source_filename: "HadEX3_61-90_EHF_HWM_ANN.nc.gz"
+    source_var: "EHF_HWM"
+    long_name: "Annual heatwave magnitude (EHF)"
+    units: "degrees_C^2"
+    cmap: "inferno"

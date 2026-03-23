@@ -1,0 +1,115 @@
+# Transport and connectivity candidate datasets (global, gridded)
+# Output grid: 0.25 degree (WorldTensor master grid)
+#
+# Rules requested:
+# - keep only full years
+# - for monthly sources, compute yearly mean/std/min/max
+# - for HMv2024, linearly interpolate missing years between anchor years
+
+output:
+  final_root: "data/final"
+  plots_root: "plots/transport_connectivity"
+  raw_root: "data/raw/transport_connectivity"
+  map_every: 5
+
+datasets:
+  hmv2024_transport:
+    enabled: true
+    kind: "hmv2024_5year_interp"
+    output_domain: "human_systems"
+    source_name: "Global Human Modification v2024"
+    zenodo_record_id: 15191928
+    anchor_years: [1990, 1995, 2000, 2005, 2010, 2015, 2020]
+    output_year_range: [1990, 2020]
+    interpolation: "linear"
+    downscale_method: "average"
+    variables:
+      hmv2024_transport_corridors:
+        source_code: "TI"
+        source_filename_pattern: "HMv20240801_{year}c_TI.tif"
+        units: "1"
+        long_name: "Human modification: transportation and service corridors"
+        cmap: "YlOrRd"
+      hmv2024_human_accessibility:
+        source_code: "HI"
+        source_filename_pattern: "HMv20240801_{year}c_HI.tif"
+        units: "1"
+        long_name: "Human modification: human accessibility and intrusion"
+        cmap: "inferno"
+
+  human_footprint_annual:
+    enabled: true
+    kind: "human_footprint_figshare_annual"
+    output_domain: "human_systems"
+    source_name: "Annual global terrestrial Human Footprint (figshare)"
+    figshare_article_id: 16571064
+    temporal_range: [2000, 2024]
+    downscale_method: "average"
+    variable:
+      name: "human_footprint"
+      units: "index"
+      long_name: "Annual global terrestrial Human Footprint"
+      cmap: "plasma"
+      zip_name_pattern: "^hfp(\\d{4})\\.zip$"
+
+  edgar_transport:
+    enabled: true
+    kind: "edgar_transport_annual"
+    output_domain: "emissions"
+    source_name: "EDGAR 2025 GHG"
+    temporal_range: [1970, 2024]
+    substance: "CO2"
+    sectors:
+      edgar_co2_road_transport:
+        code: "TRO"
+        units: "kg m-2 s-1"
+        long_name: "EDGAR CO2 road transport emissions flux"
+        cmap: "YlOrRd"
+      edgar_co2_shipping:
+        code: "TNR_Ship"
+        units: "kg m-2 s-1"
+        long_name: "EDGAR CO2 shipping emissions flux"
+        cmap: "magma"
+      edgar_co2_other_transport:
+        code: "TNR_Other"
+        units: "kg m-2 s-1"
+        long_name: "EDGAR CO2 non-road/other transport emissions flux"
+        cmap: "cividis"
+
+  ceds_transport:
+    enabled: true
+    kind: "ceds_monthly_input4cmip"
+    output_domain: "emissions"
+    source_name: "CEDS_GBD-MAPS input4CMIP"
+    zenodo_record_id: 3754964
+    source_zip_key: "CEDS_GBD-MAPS_CO_NOx_SO2_NH3_gridded_total_anthro_emissions_by_sector_input4CMIP_1970-2017.zip"
+    source_nc_pattern: "NOx-em-total-anthro_input4CMIP_emissions_CEDS-2020-v1_gn_197001-201712.nc"
+    temporal_range: [1970, 2017]
+    require_full_year: true
+    sector_index_map:
+      ROAD: 4
+      NRTR: 3
+      SHP: 10
+    variables:
+      ceds_nox_shipping:
+        sector: "SHP"
+        units: "kg m-2 s-1"
+        long_name: "CEDS NOx international shipping emissions flux"
+        cmap: "magma"
+
+  gmtds_shipping:
+    enabled: true
+    kind: "gmtds_monthly_manual"
+    output_domain: "human_systems"
+    source_name: "GMTDS monthly vessel density exports"
+    temporal_range: [2011, 2022]
+    require_full_year: true
+    # Raw input expected as monthly files in:
+    # data/raw/transport_connectivity/gmtds_shipping/monthly/
+    # Accepted extensions: .tif, .tiff, .nc
+    # Filename must include YYYYMM (e.g. gmtds_201904.tif).
+    variable:
+      name: "gmtds_shipping_density"
+      units: "hours/km2"
+      long_name: "Monthly vessel-density-derived traffic intensity"
+      cmap: "PuBuGn"

@@ -1,0 +1,40 @@
+# ESA Snow CCI v4.0 (SWE, daily)
+#
+# Data source: https://catalogue.ceda.ac.uk/uuid/edf8abd23f4a40aabd4d52e48dec06ea/
+# Download endpoint: https://dap.ceda.ac.uk/neodc/esacci/snow/data/swe/MERGED/v4.0/
+# DOI: 10.5285/edf8abd23f4a40aabd4d52e48dec06ea
+# Licence: https://artefacts.ceda.ac.uk/licences/specific_licences/esacci_snow_terms_and_conditions.pdf
+#
+# Native product:
+# - Daily files at 0.1 degree
+# - Variables: swe, swe_std
+# - Coverage years: 1979-2023
+#
+# WorldTensor processing:
+# - Aggregate daily files to yearly stats: mean, std, min, max
+# - Regrid to the 0.25 degree master grid
+# - Keep annual continuity by linear interpolation for missing years (optional)
+
+base_url: "https://dap.ceda.ac.uk/neodc/esacci/snow/data/swe/MERGED/v4.0"
+temporal_range: [1979, 2023]
+
+output:
+  domain: "cryosphere"
+  final_root: "data/final"
+  plots_root: "plots/esa_cci_snow"
+
+stats: ["mean", "std", "min", "max"]
+
+variables:
+  swe:
+    source_variable: "swe"
+    output_prefix: "snow_water_equivalent"
+    units: "mm"
+    long_name: "Snow water equivalent"
+    cmap: "Blues"
+  swe_std:
+    source_variable: "swe_std"
+    output_prefix: "snow_water_equivalent_uncertainty"
+    units: "mm"
+    long_name: "Snow water equivalent uncertainty"
+    cmap: "Oranges"

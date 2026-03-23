@@ -1,0 +1,105 @@
+# Candidate settlement/built-environment datasets.
+# Focus: global coverage, yearly historical dynamics at 0.25 degree output.
+
+datasets:
+  wsf_evolution_presence:
+    enabled: true
+    domain: "human_systems"
+    var_name: "urban_fraction"
+    long_name: "Urban fractional coverage (WSF Evolution, linearized within-cell timing)"
+    units: "1"
+    source_type: "wsf_tiles"
+    root_url: "https://download.geoservice.dlr.de/WSF_EVO/files/"
+    tile_filename_prefix: "WSFevolution_v1_"
+    format: "firstyear_tiles_actualyear"
+    start_year: 1985
+    end_year: 2015
+    nodata_value: 0
+    downscale_method: "min"
+    src_nodata: 0
+    output_mode: "fraction_linear"
+    regrid_method: "nearest"
+    cmap: "viridis"
+    log_scale: false
+    skip_map_plot: false
+
+  urban_extents_hntl:
+    enabled: true
+    domain: "human_systems"
+    var_name: "urban_extent"
+    long_name: "Annual urban extent from harmonized nighttime lights"
+    units: "1"
+    source_type: "figshare_article"
+    article_id: 16602224
+    filename_regex: "^annual_urbanMap_global_\\d{4}\\.tif$"
+    format: "annual_tiffs"
+    year_pattern: "(19|20)\\d{2}"
+    warp_dst_nodata: -9999.0
+    nodata_value: -9999.0
+    fill_nodata_with_zero: true
+    downscale_method: "average"
+    regrid_method: "nearest"
+    cmap: "magma"
+    log_scale: false
+    skip_map_plot: false
+
+  gisa_impervious_presence:
+    enabled: true
+    domain: "human_systems"
+    var_name: "impervious_fraction"
+    long_name: "Impervious fractional coverage (GISA, linearized within-cell timing)"
+    units: "1"
+    source_type: "zenodo_record_archive"
+    record_id: 5136330
+    archive_filename: "gisa_5136330.zip"
+    filename_regex: "^GISA_v01_1972_2019_.*\\.tif$"
+    format: "firstyear_tiles_offset"
+    base_year: 1972
+    start_year: 1972
+    end_year: 2019
+    nodata_value: 0
+    downscale_method: "min"
+    src_nodata: 0
+    output_mode: "fraction_linear"
+    regrid_method: "nearest"
+    cmap: "cividis"
+    log_scale: false
+    skip_map_plot: false
+
+  ghsl_built_surface:
+    enabled: true
+    domain: "human_systems"
+    var_name: "built_surface_fraction"
+    long_name: "Built-up surface fraction (GHSL, interpolated)"
+    units: "1"
+    source_type: "ghsl_epoch_zips"
+    epoch_years: [1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020]
+    url_template: "https://cidportal.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_S_GLOBE_R2023A/GHS_BUILT_S_E{year}_GLOBE_R2023A_54009_1000/V1-0/GHS_BUILT_S_E{year}_GLOBE_R2023A_54009_1000_V1_0.zip"
+    zip_member_regex: "GHS_BUILT_S_E\\d{4}_GLOBE_R2023A_54009_1000_V1_0\\.tif$"
+    format: "ghsl_epoch_interp"
+    src_srs: "EPSG:54009"
+    downscale_method: "average"
+    scale_factor: 1.0e-6
+    clip_min: 0.0
+    clip_max: 1.0
+    cmap: "YlOrRd"
+    log_scale: false
+    skip_map_plot: false
+
+  ghsl_built_volume:
+    enabled: true
+    domain: "human_systems"
+    var_name: "built_volume"
+    long_name: "Built-up volume (GHSL, interpolated)"
+    units: "m3"
+    source_type: "ghsl_epoch_zips"
+    epoch_years: [1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020]
+    url_template: "https://cidportal.jrc.ec.europa.eu/ftp/jrc-opendata/GHSL/GHS_BUILT_V_GLOBE_R2023A/GHS_BUILT_V_E{year}_GLOBE_R2023A_54009_1000/V1-0/GHS_BUILT_V_E{year}_GLOBE_R2023A_54009_1000_V1_0.zip"
+    zip_member_regex: "GHS_BUILT_V_E\\d{4}_GLOBE_R2023A_54009_1000_V1_0\\.tif$"
+    format: "ghsl_epoch_interp"
+    src_srs: "EPSG:54009"
+    downscale_method: "average"
+    clip_min: 0.0
+    cmap: "inferno"
+    log_scale: true
+    skip_map_plot: false

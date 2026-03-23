@@ -1,0 +1,77 @@
+# EDGAR 2025 GHG — Emissions Database for Global Atmospheric Research
+#
+# Source: European Commission JRC
+# Reference: Crippa et al. (2025), EDGAR 2025 GHG
+# URL: https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/EDGAR/datasets/EDGAR_2025_GHG
+#
+# Each file provides annual 0.1° gridded fluxes (kg m-2 s-1) for a substance/sector pair.
+# File pattern: EDGAR_2025_GHG_{substance}_{YYYY}_{sector}_flx_nc.zip
+#
+# NOTE: Sector lists verified against FTP (2025-02-27). Only sectors with gridmaps are listed.
+# TNR_Aviation_SPS only has 1970-2003; all other sectors have full 1970-2024 coverage.
+
+source_url_base: https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/EDGAR/datasets/EDGAR_2025_GHG
+temporal_range: [1970, 2024]
+
+substances:
+  CO2bio:
+    long_name: "Biogenic CO2 emissions"
+    units: "kg m-2 s-1"
+    sectors: [AWB, ENE, IND, RCO, REF_TRF, SWD_INC, TOTALS, TRO]
+  CH4:
+    long_name: "Methane emissions"
+    units: "kg m-2 s-1"
+    sectors: [AGS, AWB, CHE, ENE, ENF, IND, IRO, MNM,
+              PRO_COAL, PRO_FFF, PRO_GAS, PRO_OIL, RCO, REF_TRF, SWD_INC, SWD_LDF,
+              TNR_Other, TNR_Ship, TOTALS, TRO, WWT]
+  N2O:
+    long_name: "Nitrous oxide emissions"
+    units: "kg m-2 s-1"
+    sectors: [AGS, AWB, CHE, ENE, IDE, IND, MNM, N2O,
+              PRO_FFF, PRU_SOL, RCO, REF_TRF, SWD_INC, SWD_LDF,
+              TNR_Other, TNR_Ship, TOTALS, TRO, WWT]
+  GWP_100_AR5_GHG:
+    long_name: "Total GHG emissions (CO2eq, AR5 GWP-100)"
+    units: "kg m-2 s-1"
+    sectors: [AGS, AWB, CHE, ENE, ENF, IDE, IND, IRO, MNM, N2O, NEU, NFE, NMM,
+              PRO_FFF, PRU_SOL, RCO, REF_TRF,
+              SWD_INC, SWD_LDF, TNR_Aviation_CDS, TNR_Aviation_CRS, TNR_Aviation_LTO,
+              TNR_Other, TNR_Ship, TOTALS, TRO, WWT]
+
+sectors:
+  TOTALS:    { long_name: "All sectors total" }
+  AGS:       { long_name: "Agricultural soils" }
+  AWB:       { long_name: "Agricultural waste burning" }
+  CHE:       { long_name: "Chemical processes" }
+  ENE:       { long_name: "Power industry" }
+  ENF:       { long_name: "Enteric fermentation" }
+  IDE:       { long_name: "Indirect emissions from NOx and NH3" }
+  IND:       { long_name: "Combustion for manufacturing" }
+  IRO:       { long_name: "Iron and steel production" }
+  MNM:       { long_name: "Manure management" }
+  N2O:       { long_name: "N2O indirect emissions" }
+  NEU:       { long_name: "Non-energy use of fuels" }
+  NFE:       { long_name: "Non-ferrous metals production" }
+  NMM:       { long_name: "Non-metallic minerals production" }
+  PRO_COAL:  { long_name: "Fugitive from coal" }
+  PRO_FFF:   { long_name: "Fugitive from fossil fuels" }
+  PRO_GAS:   { long_name: "Fugitive from gas" }
+  PRO_OIL:   { long_name: "Fugitive from oil" }
+  PRU_SOL:   { long_name: "Solvents and product use" }
+  RCO:       { long_name: "Buildings (residential and commercial)" }
+  REF_TRF:   { long_name: "Oil refineries and transformation industry" }
+  SWD_INC:   { long_name: "Solid waste incineration" }
+  SWD_LDF:   { long_name: "Solid waste landfills" }
+  TNR_Aviation_CDS: { long_name: "Aviation climbing and descent" }
+  TNR_Aviation_CRS: { long_name: "Aviation cruise" }
+  TNR_Aviation_LTO: { long_name: "Aviation landing and take-off" }
+  TNR_Other: { long_name: "Railways, pipelines, off-road transport" }
+  TNR_Ship:  { long_name: "Shipping" }
+  TRO:       { long_name: "Road transportation" }
+  WWT:       { long_name: "Waste water treatment" }
+
+# Aggregate (virtual) sectors — computed by summing component sectors
+aggregates:
+  Aviation:
+    long_name: "Aviation total (CDS + CRS + LTO)"
+    components: [TNR_Aviation_CDS, TNR_Aviation_CRS, TNR_Aviation_LTO]

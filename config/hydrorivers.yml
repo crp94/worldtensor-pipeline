@@ -1,0 +1,19 @@
+# HydroRIVERS v1.0 — Global River Network (HydroSHEDS)
+#
+# Data source: https://www.hydrosheds.org/products/hydrorivers
+# Download   : https://data.hydrosheds.org/file/HydroRIVERS/HydroRIVERS_v10_shp.zip
+# Citation   : Lehner & Grill (2013), Hydrol. Process. 27(15):2171-2186.
+# License    : Free for non-commercial use
+#
+# Global shapefile of river centerlines (~700 MB zipped).
+# Used to compute distance-to-nearest-river on the 0.25° grid.
+
+url: https://data.hydrosheds.org/file/HydroRIVERS/HydroRIVERS_v10_shp.zip
+zip_name: HydroRIVERS_v10_shp.zip
+shapefile: "HydroRIVERS_v10_shp/HydroRIVERS_v10.shp"
+
+variables:
+  dist_to_river:
+    units: "km"
+    long_name: "Distance to nearest river"
+    cmap: "Blues_r"

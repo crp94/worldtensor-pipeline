@@ -1,0 +1,25 @@
+# ETOPO 2022 — Global Relief Model (NOAA NCEI)
+#
+# Data source: https://www.ncei.noaa.gov/products/etopo-global-relief-model
+# Download   : https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO2022/data/60s/
+# Citation   : NOAA NCEI (2022). ETOPO 2022 15 Arc-Second Global Relief Model.
+# License    : Public domain (NOAA)
+#
+# 60 arc-second bedrock elevation GeoTIFF (~370 MB).
+# Contains full land + ocean elevation. Ocean depth extracted as positive depth.
+
+url: https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO2022/data/60s/60s_bed_elev_gtif/ETOPO_2022_v1_60s_N90W180_bed.tif
+source_file: ETOPO_2022_v1_60s_N90W180_bed.tif
+
+variables:
+  ocean_depth:
+    units: "m"
+    long_name: "Ocean depth (bathymetry)"
+    cmap: "Blues"
+    description: "Depth below sea level (positive values). Land cells = 0."
+
+  bathymetry_elevation:
+    units: "m"
+    long_name: "Bedrock elevation (land + ocean)"
+    cmap: "terrain"
+    description: "Full elevation field. Negative = below sea level, positive = above."

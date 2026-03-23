@@ -1,0 +1,161 @@
+# ODIAC Fossil Fuel CO2 Emissions Dataset (ODIAC2024)
+#
+# Data source
+# -----------
+# Oda, T. and Maksyutov, S. (2015).
+# ODIAC Fossil Fuel CO2 Emissions Dataset (Version ODIAC2024).
+# Center for Global Environmental Research, National Institute for
+# Environmental Studies (NIES).
+# DOI: 10.17595/20170411.001
+#
+# Key references
+# --------------
+# Oda, T. and Maksyutov, S. (2011). A very high-resolution (1 km × 1 km)
+# global fossil fuel CO2 emission inventory derived using a point source
+# database and satellite observations of nighttime light.
+# Atmos. Chem. Phys., 11, 543–556. https://doi.org/10.5194/acp-11-543-2011
+#
+# Oda, T., Maksyutov, S. and Andres, R. J. (2018). The Open-source Data
+# Inventory for Anthropogenic CO2, version 2016 (ODIAC2016): a global monthly
+# fossil fuel CO2 gridded emissions data product for tracer transport
+# simulations and surface flux inversions.
+# Earth Syst. Sci. Data, 10, 87–107. https://doi.org/10.5194/essd-10-87-2018
+#
+# License        : CC-BY 4.0 (Creative Commons Attribution 4.0 International)
+# Institution    : USRA / NIES / NASA / AppState / NOAA
+# Native res.    : 1° × 1° (this product); also available at 1 km
+# Temporal res.  : Monthly (aggregated to yearly in this pipeline)
+# Temporal range : 2000–2023
+# Regridded to   : 0.25° (bilinear interpolation)
+#
+# File structure (raw)
+# --------------------
+# Each yearly NetCDF contains two variables with 12 monthly layers:
+#   - land        : CO2 from fossil fuel combustion, cement, gas flaring
+#   - intl_bunker : CO2 from international aviation/marine bunker + Antarctic
+#
+# Units (raw)    : gC/m²/d  (grams of carbon per square meter per day)
+# Units (output) : gC/m²/d  (preserved; monthly stats of daily emission rate)
+#
+# Yearly aggregation
+# ------------------
+# For each source variable (land, intl_bunker) and year, we produce:
+#   - {var}_mean : mean monthly emission rate across the 12 months
+#   - {var}_sum  : sum of monthly emission rates (proportional to annual total)
+#   - {var}_max  : maximum monthly emission rate
+#   - {var}_min  : minimum monthly emission rate
+#   - {var}_std  : standard deviation of monthly emission rates (seasonality)
+#
+# We also produce a "total" variable (land + intl_bunker) with the same stats.
+#
+# Download
+# --------
+# Direct HTTP from NIES (no registration required):
+#   https://db.cger.nies.go.jp/nies_data/10.17595/20170411.001/odiac2024/
+#     1deg_ncdf/odiac2024_1x1d_{YYYY}.nc
+#
+# All-years bundle (~143 MB):
+#   .../1deg_ncdf/odiac2024_1x1d_allyears.nc.zip
+
+short_name: ODIAC
+version: "ODIAC2024"
+data_doi: "10.17595/20170411.001"
+paper_doi_1: "10.5194/acp-11-543-2011"
+paper_doi_2: "10.5194/essd-10-87-2018"
+license: "CC-BY-4.0"
+temporal_range: [2000, 2023]
+resolution_native: "1 degree"
+
+base_url: "https://db.cger.nies.go.jp/nies_data/10.17595/20170411.001/odiac2024/1deg_ncdf"
+file_pattern: "odiac2024_1x1d_{year}.nc"
+bundle_filename: "odiac2024_1x1d_allyears.nc.zip"
+
+source_variables:
+  land:
+    long_name: "Fossil fuel CO2 emissions (land-based)"
+    definition: "CO2 from fossil fuel combustion, cement production and gas flaring"
+  intl_bunker:
+    long_name: "International bunker CO2 emissions"
+    definition: "CO2 from international aviation, marine bunker, and Antarctic fishery"
+
+# Output variables registered in variables.yml.
+# Naming: odiac_{source}_{stat}
+output_variables:
+  # --- land ---
+  odiac_land_mean:
+    source_var: land
+    stat: mean
+    long_name: "ODIAC fossil fuel CO2 emissions, land (annual mean)"
+    units: "gC m-2 d-1"
+  odiac_land_sum:
+    source_var: land
+    stat: sum
+    long_name: "ODIAC fossil fuel CO2 emissions, land (annual sum of monthly rates)"
+    units: "gC m-2 d-1"
+  odiac_land_max:
+    source_var: land
+    stat: max
+    long_name: "ODIAC fossil fuel CO2 emissions, land (monthly max)"
+    units: "gC m-2 d-1"
+  odiac_land_min:
+    source_var: land
+    stat: min
+    long_name: "ODIAC fossil fuel CO2 emissions, land (monthly min)"
+    units: "gC m-2 d-1"
+  odiac_land_std:
+    source_var: land
+    stat: std
+    long_name: "ODIAC fossil fuel CO2 emissions, land (monthly std dev)"
+    units: "gC m-2 d-1"
+  # --- intl_bunker ---
+  odiac_intl_bunker_mean:
+    source_var: intl_bunker
+    stat: mean
+    long_name: "ODIAC international bunker CO2 emissions (annual mean)"
+    units: "gC m-2 d-1"
+  odiac_intl_bunker_sum:
+    source_var: intl_bunker
+    stat: sum
+    long_name: "ODIAC international bunker CO2 emissions (annual sum of monthly rates)"
+    units: "gC m-2 d-1"
+  odiac_intl_bunker_max:
+    source_var: intl_bunker
+    stat: max
+    long_name: "ODIAC international bunker CO2 emissions (monthly max)"
+    units: "gC m-2 d-1"
+  odiac_intl_bunker_min:
+    source_var: intl_bunker
+    stat: min
+    long_name: "ODIAC international bunker CO2 emissions (monthly min)"
+    units: "gC m-2 d-1"
+  odiac_intl_bunker_std:
+    source_var: intl_bunker
+    stat: std
+    long_name: "ODIAC international bunker CO2 emissions (monthly std dev)"
+    units: "gC m-2 d-1"
+  # --- total (land + intl_bunker) ---
+  odiac_total_mean:
+    source_var: total
+    stat: mean
+    long_name: "ODIAC total fossil fuel CO2 emissions (annual mean)"
+    units: "gC m-2 d-1"
+  odiac_total_sum:
+    source_var: total
+    stat: sum
+    long_name: "ODIAC total fossil fuel CO2 emissions (annual sum of monthly rates)"
+    units: "gC m-2 d-1"
+  odiac_total_max:
+    source_var: total
+    stat: max
+    long_name: "ODIAC total fossil fuel CO2 emissions (monthly max)"
+    units: "gC m-2 d-1"
+  odiac_total_min:
+    source_var: total
+    stat: min
+    long_name: "ODIAC total fossil fuel CO2 emissions (monthly min)"
+    units: "gC m-2 d-1"
+  odiac_total_std:
+    source_var: total
+    stat: std
+    long_name: "ODIAC total fossil fuel CO2 emissions (monthly std dev)"
+    units: "gC m-2 d-1"

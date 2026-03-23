@@ -1,0 +1,25 @@
+# WAD2M — Global Surface Water and Wetland Dynamics (2000–2020)
+#
+# Source  : https://doi.org/10.5194/essd-13-1329-2021
+# Citation: Zhang et al. (2021). "A global dataset of surface water and 
+#           wetland dynamics, 2000–2020."
+# Resolution: 0.25° (Native)
+
+short_name: WAD2M
+version: "2.0"
+temporal_range: [2000, 2020]
+resolution_native: "0.25°"
+
+variables:
+  inundation_fraction:
+    long_name: "Surface water and wetland inundation fraction"
+    units: "1"
+    category: "hydrology"
+    aggregation: "mean"
+    scale_factor: 1.0
+    fill_value: -9999
+
+output:
+  final_dir: "data/final/hydrology"
+  plots_dir: "plots/wad2m"
+  stats: ["mean", "max"]

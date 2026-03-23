@@ -1,0 +1,111 @@
+WorldTensor Torch Examples
+==========================
+
+These examples read directly from the canonical per-variable files under:
+
+  data/final/
+
+There is no merged cube step.
+
+Requirements
+------------
+
+1. Create the project environment and install this repo.
+2. Install PyTorch separately, because it is not a core dependency of WorldTensor.
+
+Example:
+
+  source .venv/bin/activate
+  pip install torch
+
+Run From The Repo Root
+----------------------
+
+Global tensor example:
+
+  python examples/torch/01_global_tensor.py
+
+Patch DataLoader example:
+
+  python examples/torch/02_patch_dataloader.py
+
+Neighboring crops:
+
+  python examples/torch/02_patch_dataloader.py --sampling neighbor --patch-stride 64
+
+Sparse dictionaries with {coordinates, values}:
+
+  python examples/torch/02_patch_dataloader.py --output-format dict
+
+Neighboring sparse crops:
+
+  python examples/torch/02_patch_dataloader.py --sampling neighbor --output-format dict
+
+What The Loader Returns
+-----------------------
+
+For a variable list like:
+
+  ["t2m_mean", "tp_sum", "tcc_mean", "elevation_mean"]
+
+the stacked tensor is shaped like:
+
+  [C, H, W]
+
+where:
+
+  C = number of variables
+  H = 721
+  W = 1440
+
+The returned dictionary contains:
+
+  x      : data tensor
+  mask   : finite-value mask
+  lat    : latitude coordinates
+  lon    : longitude coordinates
+  year   : requested year
+
+Patch example output modes
+--------------------------
+
+Dense mode returns:
+
+  x, mask, lat, lon, year, row, col, valid_fraction
+
+Dictionary mode returns:
+
+  coordinates : [N, 2] lat/lon pairs
+  values      : [N, C] channel values at those coordinates
+  mask        : [N, C] finite-value mask
+  grid_index  : [N, 2] row/col indices on the global grid
+
+Notes
+-----
+
+- Static variables are resolved automatically from the registry.
+- Annual variables use the requested year.
+- The examples default to per-channel z-score normalization.
+- If you want to test the loader without torch, use the helper module directly and pass:
+
+    as_torch=False
+
+Minimal API
+-----------
+
+from worldtensor_torch import load_channels, WorldTensorPatchDataset
+
+sample = load_channels(
+    ["t2m_mean", "tp_sum", "elevation_mean"],
+    year=2015,
+    normalize="zscore",
+    as_torch=True,
+)
+
+patches = WorldTensorPatchDataset(
+    variables=["t2m_mean", "tp_sum", "tcc_mean", "elevation_mean"],
+    years=[2015, 2016],
+    patch_size=64,
+    patches_per_year=128,
+    as_torch=True,
+)

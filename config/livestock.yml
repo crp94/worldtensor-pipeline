@@ -1,0 +1,37 @@
+# Annual Gridded Livestock of the World (AGLW) — 1961–2021
+#
+# Source: Zenodo (DOI: 10.5281/zenodo.11545701)
+# Reference: Du et al. (2025), Earth System Science Data.
+#
+# Yearly gridded density (heads per km²) for major livestock species.
+# Resolution: 5 km (0.041667 degrees)
+# Target: 0.25 degrees
+
+source_url: "https://zenodo.org/records/11545701/files/AGLW_1961_2021.zip?download=1"
+
+variables:
+  livestock_cattle:
+    source_pattern: "Cattl_{year}.tif"
+    long_name: "Cattle density"
+    units: "heads/km²"
+    cmap: "YlOrRd"
+  livestock_pigs:
+    source_pattern: "Swine_{year}.tif"
+    long_name: "Pig density"
+    units: "heads/km²"
+    cmap: "YlOrRd"
+  livestock_sheep:
+    source_pattern: "Sheep_{year}.tif"
+    long_name: "Sheep density"
+    units: "heads/km²"
+    cmap: "YlOrRd"
+  livestock_goats:
+    source_pattern: "Goats_{year}.tif"
+    long_name: "Goat density"
+    units: "heads/km²"
+    cmap: "YlOrRd"
+  livestock_chickens:
+    source_pattern: "Chick_{year}.tif"
+    long_name: "Chicken density"
+    units: "heads/km²"
+    cmap: "YlOrRd"

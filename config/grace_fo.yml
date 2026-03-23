@@ -1,0 +1,25 @@
+# GRACE / GRACE-FO Terrestrial Water Storage (TWS) Anomaly
+#
+# Source  : NASA JPL Mascon Ocean, Ice, and Hydrology Equivalent Water Height (RL06.1)
+# DOI     : https://doi.org/10.5067/TEMSC-3JC62
+# Short Name: TELLUS_GRAC-GRFO_MASCON_CRI_GRID_RL06.1_V3
+# Resolution: 0.5° (Regridded to 0.25°)
+
+short_name: GRACE_TWS
+version: "6.1"
+temporal_range: [2002, 2025]
+resolution_native: "0.5°"
+
+variables:
+  lwe_thickness:
+    long_name: "Liquid Water Equivalent Thickness Anomaly"
+    units: "cm"
+    category: "hydrology"
+    aggregation: ["mean", "max", "min", "std"]
+    scale_factor: 1.0
+    fill_value: -9999
+
+output:
+  final_dir: "data/final/hydrology"
+  plots_dir: "plots/grace"
+  stats: ["mean", "max", "min", "std"]
