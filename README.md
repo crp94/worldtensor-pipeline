@@ -1,5 +1,7 @@
 # WorldTensor
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19184043.svg)](https://doi.org/10.5281/zenodo.19184043)
+
 **A Harmonized Dataset for Earth System Foundation Models**
 
 WorldTensor aligns hundreds of environmental and socioeconomic variables onto a
@@ -481,7 +483,7 @@ licenses for each source when using the data beyond the scope of this release.
 
 ## Citation
 
-If you use WorldTensor in your research, please cite:
+If you use WorldTensor in your research, please cite the paper and dataset:
 
 ```bibtex
 @article{rodriguez-pardo2026worldtensor,
@@ -491,7 +493,19 @@ If you use WorldTensor in your research, please cite:
   year    = {2026},
   note    = {submitted}
 }
+
+@software{rodriguez-pardo2026worldtensor-code,
+  title     = {WorldTensor: Pipeline Code for Dataset Generation},
+  author    = {Rodriguez-Pardo, Carlos and Tavoni, Massimo},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.19184043},
+  url       = {https://doi.org/10.5281/zenodo.19184043}
+}
 ```
+
+The released dataset is available separately at
+[Zenodo (10.5281/zenodo.19047618)](https://doi.org/10.5281/zenodo.19047618).
 
 ## Acknowledgements
 
